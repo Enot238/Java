@@ -6,11 +6,11 @@ public class Main {
         System.out.println("Введіть число від 20 до 69");
         try{
         int age = in.nextInt();
-        System.out.print(age);
-        if(age <= 19 && age >= 70){
+        if(age < 20 || age >= 70){
             System.out.print("Число повинно бути в діапазоні від 20 до 69");
         }
         else {
+            System.out.print(age);
             switch (age) {
                 case 20:
                 case 25:
@@ -72,9 +72,6 @@ public class Main {
         catch (Exception ex){
             System.out.print("Не вірно введені значення");
         }
-
-
-
         /*
         if (age >= 11 && age <= 19)
         {
@@ -93,6 +90,5 @@ public class Main {
             System.out.print(age + " рокiв");
         }
         */
-
     }
 }
