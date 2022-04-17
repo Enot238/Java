@@ -111,13 +111,15 @@ public class Main {
                         if (choose1.equals("1")) {
                             InputArray1(arr);
                         }
-                        if (choose1.equals("2")) {
+                        else if (choose1.equals("2")) {
                             ArrayRandom(arr);
                             Output_Mas(arr);
-                        } else {
+                        }
+                        else
+                        {
                             System.out.println("\nНе коректно введені значення спробуйте ще раз");
                         }
-                        System.out.println("\nКількість додатніх чисел в масиві: " + Count_of_dodNum(arr));
+                        System.out.println("Кількість додатніх чисел в масиві: " + Count_of_dodNum(arr) + "\n");
                         return;
 
                     case "2":
