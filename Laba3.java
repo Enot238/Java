@@ -81,7 +81,8 @@ public class Main {
                 }
             }
             Sort(b);
-            Output_Mas(b);
+            System.out.print("Масив а: ");Output_Mas(a);
+            System.out.print("Масив b: ");Output_Mas(b);
         }catch (Exception ex){
             System.out.println("Не коректно введені данні. Спробуйте ще раз");
         }
