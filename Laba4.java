@@ -38,6 +38,18 @@ public class Main {
         }
     }
 
+    public static int SearchMaxInArr(int arr[][],int n,int m){
+        int max = arr[0][0];
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                if (max < arr[i][j]){
+                    max = arr[i][j];
+                }
+            }
+        }
+        return max;
+    }
+
     static void task1() {
         try {
             Scanner in = new Scanner(System.in);
@@ -54,8 +66,7 @@ public class Main {
                 InputArray(arr, n, m);
                 OutputArray(arr, n, m);
             }
-
-            if(a==2){
+            else if(a==2){
                 ArrayRandom(arr,n,m);
                 OutputArray(arr, n, m);
             }
@@ -68,60 +79,44 @@ public class Main {
 
             System.out.println();
             int minel = arr[0][0];
-            int j=0;
-
+            int max=SearchMaxInArr(arr,n,m);;
             for (int i = 0; i < m; i++) {
-                for (j=0;j<n;j++) {
+                for (int j=0;j<n;j++) {
                     if (minel > arr[j][i]){
                         minel = arr [j][i];
                     }
                 }
-                System.out.println("stovp  #" + (i+1) + "  minimalnie - " + minel);
+                System.out.println("Стовпець  #" + (i+1) + " мінімальне значення: " + minel);
                 brr [i] = minel;
-                minel = 1000;
-            }
+                minel = max;
 
+            }
             System.out.print("Массив b - ");
             OutputArray(brr);
 
 
-        }catch (Exception ex){
+        }
+        catch (Exception ex){
             System.out.println("Не коректно введені данні. Спробуйте ще раз");
             task1();
         }
-
     }
 
-
-    static int SearchMinInArr(int arr[][],int n, int m ){
-        int minel = arr[0][0];
-        for (int i = 0; i < n; i++) {
-            for (int j=0;j<m;j++) {
-                if (minel > arr[i][j]){
-                    minel = arr [i][j];
-                }
-            }
-        }
-        return minel;
-    }
-    static int SearchMaxInArr(int arr[][],int n, int m ){
-        int maxel = arr[0][0];
-        for (int i = 0; i < n; i++) {
-            for (int j=0;j<m;j++) {
-                if (maxel < arr[i][j]){
-                    maxel = arr [i][j];
-                }
-            }
-        }
-        return maxel;
-    }
 
     static void task2(){
         Scanner in = new Scanner(System.in);
         System.out.println("Введіть розмірність двохвимірного масиву");
         int n = in.nextInt();
         int m = in.nextInt();
+
+        if(n==m){
+            System.out.println("Матриця повинна бути прямокутною");
+            task2();
+        }
+
         int arr[][] = new int[n][m];
+
+
 
         System.out.println("Виберіть спосіб введення масиву \n \t 1 - Введення з клавіатури  \n \t 2 - Введення рандомних значень від -100 до 100");
         int a = in.nextInt();
@@ -146,8 +141,6 @@ public class Main {
         int miny=0;
         int maxx=0;
         int maxy=0;
-        int ss=0;
-
         for (int i = 0; i < n; i++) {
             for (int j=0;j<m;j++) {
                 if (min > arr[i][j]){
@@ -164,7 +157,7 @@ public class Main {
         }
         arr[minx][miny]= max;
         arr[maxx][maxy]= min;
-        System.out.println("Мінімільний елемент" + min + "\n Максимальний елемент" + max);
+        System.out.println("\nМінімільний елемент - " + min + "\n Максимальний елемент - " + max + "\n");
         OutputArray(arr,n,m);
     }
 
