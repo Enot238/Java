@@ -58,7 +58,6 @@ public class Main {
             int m = in.nextInt();
             int arr[][] = new int[n][m];
             int brr[] = new int [m];
-
             System.out.println("Виберіть спосіб введення масиву \n \t 1 - Введення з клавіатури  \n \t 2 - Введення рандомних значень від -100 до 100");
             int a = in.nextInt();
             if(a==1){
@@ -74,9 +73,7 @@ public class Main {
                 System.out.println("Не правильно введене значення, спробуйте ще раз");
                 System.out.println();
                 task1();
-
             }
-
             System.out.println();
             int minel = arr[0][0];
             int max=SearchMaxInArr(arr,n,m);;
@@ -89,12 +86,9 @@ public class Main {
                 System.out.println("Стовпець  #" + (i+1) + " мінімальне значення: " + minel);
                 brr [i] = minel;
                 minel = max;
-
             }
             System.out.print("Массив b - ");
             OutputArray(brr);
-
-
         }
         catch (Exception ex){
             System.out.println("Не коректно введені данні. Спробуйте ще раз");
@@ -104,64 +98,66 @@ public class Main {
 
 
     static void task2(){
-        Scanner in = new Scanner(System.in);
-        System.out.println("Введіть розмірність двохвимірного масиву");
-        int n = in.nextInt();
-        int m = in.nextInt();
-
-        if(n==m){
-            System.out.println("Матриця повинна бути прямокутною");
-            task2();
-        }
-
-        int arr[][] = new int[n][m];
-
-
-
-        System.out.println("Виберіть спосіб введення масиву \n \t 1 - Введення з клавіатури  \n \t 2 - Введення рандомних значень від -100 до 100");
-        int a = in.nextInt();
-        if(a==1){
-            System.out.println("Введіть значення масиву");
-            InputArray(arr, n, m);
-            OutputArray(arr, n, m);
-        }
-        if(a==2){
-            ArrayRandom(arr,n,m);
-            OutputArray(arr, n, m);
-        }
-        else{
-            System.out.println("Не правильно введене значення, спробуйте ще раз");
-            System.out.println();
-            task2();
-        }
-
-        int min = arr[0][0];
-        int max = arr[0][0];
-        int minx=0;
-        int miny=0;
-        int maxx=0;
-        int maxy=0;
-        for (int i = 0; i < n; i++) {
-            for (int j=0;j<m;j++) {
-                if (min > arr[i][j]){
-                    min = arr [i][j];
-                    minx =i;
-                    miny=j;
-                }
-                else if (max < arr[i][j]){
-                    max = arr [i][j];
-                    maxx=i;
-                    maxy=j;
+        try
+        {
+            Scanner in = new Scanner(System.in);
+            System.out.println("Введіть розмірність двохвимірного масиву");
+            int n = in.nextInt();
+            int m = in.nextInt();
+            if(n==m){
+                System.out.println("Матриця повинна бути прямокутною");
+                task2();
+            }
+            int arr[][] = new int[n][m];
+            System.out.println("Виберіть спосіб введення масиву \n \t 1 - Введення з клавіатури  \n \t 2 - Введення рандомних значень від -100 до 100");
+            int a = in.nextInt();
+            if(a==1){
+                System.out.println("Введіть значення масиву");
+                InputArray(arr, n, m);
+                OutputArray(arr, n, m);
+            }
+            if(a==2){
+                ArrayRandom(arr,n,m);
+                OutputArray(arr, n, m);
+            }
+            else{
+                System.out.println("Не правильно введене значення, спробуйте ще раз");
+                System.out.println();
+                task2();
+            }
+            int min = arr[0][0];
+            int max = arr[0][0];
+            int minx=0;
+            int miny=0;
+            int maxx=0;
+            int maxy=0;
+            for (int i = 0; i < n; i++) {
+                for (int j=0;j<m;j++) {
+                    if (min > arr[i][j]){
+                        min = arr [i][j];
+                        minx =i;
+                        miny=j;
+                    }
+                    else if (max < arr[i][j]){
+                        max = arr [i][j];
+                        maxx=i;
+                        maxy=j;
+                    }
                 }
             }
+            arr[minx][miny]= max;
+            arr[maxx][maxy]= min;
+            System.out.println("\n \t Мінімільний елемент - " + min + "\n \t Максимальний елемент - " + max + "\n");
+            OutputArray(arr,n,m);
+            
+        }catch (Exception ex){
+            System.out.println("Не коректно введені данні. Спробуйте ще раз");
+            task1();
         }
-        arr[minx][miny]= max;
-        arr[maxx][maxy]= min;
-        System.out.println("\nМінімільний елемент - " + min + "\n Максимальний елемент - " + max + "\n");
-        OutputArray(arr,n,m);
     }
 
     public static void main(String[] args) {
+
         String n ;
         Scanner in = new Scanner(System.in);
         do {
