@@ -47,11 +47,6 @@ public class Main {
         }
 
     }
-    static int CountWords(String str[]){
-        int count=0;
-        for (int i=0;i< str.length;i++){count++;}
-        return count;
-    }
     static int countNeParnih(int arr[]){
         int count =0;
 
@@ -62,6 +57,7 @@ public class Main {
         }
         return count;
     }
+
     static void task2(int arr[]){
         for (int i=0;i<arr.length;i++){
             if(arr[i]%2==0){
@@ -75,11 +71,16 @@ public class Main {
             }
         }
 
+      Output(arr);
+
+    }
+
+    static void Output(int arr[]){
         for(int i=0;i< arr.length;i++){
             System.out.print(arr[i] + " ");
         }
-
     }
+
 
     public static void main(String[] args) throws FileNotFoundException, IOException {
         try {
@@ -111,8 +112,6 @@ public class Main {
                             System.out.println("Будь ласка, введіть слова ряду Українською мовою");
                             System.out.print("Введення рядка:");
                             String str = sttr.nextLine();
-                            System.out.println("Рядок повинен бути не порожнім");
-                            main(args);
                             SearchNouns(str);
                             System.out.println();
                         }
@@ -120,9 +119,6 @@ public class Main {
                             System.out.println("Будь ласка, введіть слова ряду Українською мовою");
                             System.out.print("Введення рядка:");
                             String str = sttr.nextLine();
-                            System.out.println("Рядок повинен бути не порожнім");
-                            System.out.println();
-                            main(args);
                             System.out.println("Кількість слів в реченні: "+ CountWords(str));
                             System.out.println();
                         }
@@ -130,7 +126,7 @@ public class Main {
                         else System.out.println("Не вірно введене значення"); main(args);
                         break;
                     case "2":
-                        System.out.println("Завдання 2");
+                        System.out.println("\t    ---Завдання №2---");
                         File readers = new File("num.txt");
                         FileInputStream inputs = new FileInputStream(readers);
                         int lengthhs = inputs.available();
@@ -147,6 +143,18 @@ public class Main {
                         for (int i=0;i<s.length;i++){ array[i] = Integer.parseInt(s[i]);}
                         System.out.println("Результат: ");
                         task2(array);
+                        System.out.println();
+                        String Vvod="";
+                        String [] vv = Vivods.split(" ");
+                        for (int i=0;i<array.length;i++){
+                            Vvod = Vvod + array[i] + " ";
+                        }
+                        System.out.println("Запис результату в файл...");
+                        PrintWriter writer = new PrintWriter("Res2.txt");
+                        writer.write(Vvod);
+                        writer.close();
+                        System.out.print("Результат: " + Vvod);
+                        System.out.println("\n////////////////////////////////////////////");
                         System.out.println();
                         System.out.println();
                         break;
@@ -168,14 +176,14 @@ public class Main {
                         int[] arrays = new int [ss.length];
                         for (int i=0;i<ss.length;i++){ arrays[i] = Integer.parseInt(ss[i]);}
                         int Counts = countNeParnih(arrays);
-                        String Vvod="";
-                        String [] vv = Vivod.split(" ");
+                        String Vvods="";
+                        String [] vvs = Vivod.split(" ");
                         System.out.println("Кількість непарних чисел = " + Counts);
                         Vvod ="Кількість непарних чисел = " + Counts;
                         System.out.println("Запис результату в файл...");
-                        PrintWriter writer = new PrintWriter("OutPut.txt");
-                        writer.write(Vvod);
-                        writer.close();
+                        PrintWriter writers = new PrintWriter("OutPut.txt");
+                        writers.write(Vvod);
+                        writers.close();
                         System.out.print("Результат: " + Vvod);
                         System.out.println("\n////////////////////////////////////////////");
                         System.out.println();
