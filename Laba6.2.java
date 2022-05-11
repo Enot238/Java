@@ -88,13 +88,9 @@ class storage implements Serializable{
         }
     }
 
-
     public void OutputTovar(){
-        System.out.println("Інвентарний номер: " + nubmer);
-        for(String s: Arrays.asList("\tНазва товару: " + name, "\tВага: " + mass, "\tЦіна: " + price+ "\tКількість"+ count)){
-            System.out.println(s);
-        }
-        System.out.println();
+        System.out.println("Інвентарний номер: " + nubmer + " | Назва товару: " + name + " | Вага: " + mass+ " | Ціна: " + price +  " | Кількість "+ count);
+        System.out.print("--------------------------------------------------------------------------------------\n");
     }
 
     public static void OutputAllTovar(List<storage> array){
@@ -130,8 +126,6 @@ class storage implements Serializable{
     }
 }
 
-
-
 public class Main {
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
@@ -139,7 +133,7 @@ public class Main {
         Scanner in = new Scanner(System.in);
         do {
         System.out.println("============================================================");
-        System.out.println("\t\t---Лабораторна робота №6---");
+        System.out.println("\t\t---Лабораторна робота №6.2---");
         System.out.println("\t\t\t---Список завдань---");
         System.out.println("---1 - Ввести інформацію про товар ");
         System.out.println("---2 - Вивести інформацію про товар на складі");
@@ -169,12 +163,9 @@ public class Main {
                  storage.DeleteTovar();
                 break;
             case "6":
-                //File file = new File("D:\\Java\\laba6.2\\tovar.txt");
-                //file.deleteOnExit();
                 return;
         }
     } while (n != "6");
         return;
     }
 }
-
