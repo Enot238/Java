@@ -48,16 +48,20 @@ class Trip extends Mus_band implements Serializable{
         try{
             System.out.print("Введіть назву музичного гурту: ");
             b.Name_band=a.nextLine();
+            if(b.Name_band == ""){
+                throw new Exception();
+            }
             System.out.print("Введіть прізвище керівника: ");
             b.surname=a.nextLine();
+            if(b.surname == ""){
+                throw new Exception();
+            }
             System.out.print("Введіть місто: ");
             b.city=a.nextLine();
             System.out.print("Введіть рік: ");
             b.year=c.nextInt();
             System.out.print("Введіть кількість концертів: ");
             b.consert_count=c.nextInt();
-
-
         }
         catch (Exception ex){
             System.out.println("Введене некоректні значення!!!");
@@ -95,18 +99,17 @@ class Trip extends Mus_band implements Serializable{
     }
 
     public static void SearchMaxConsert(){
-        int max = trips.get(0).consert_count;
+        int max = 0;
         int n=0;
         for(int i=0;i<trips.size();i++){
-            if(max < trips.get(i).consert_count){
+            if(max <= trips.get(i).consert_count){
                 max = trips.get(i).consert_count;
-                n=n+1;
+                n++;
             }
         }
         if (n>1){
             System.out.println("Кількість гастролів з однаковою кількістю концертів: " + n);
         }
-
         for(int i=0;i<trips.size();i++){
             if(trips.get(i).consert_count == max){
                 trips.get(i).OutputTrip();
@@ -141,13 +144,26 @@ class Trip extends Mus_band implements Serializable{
     public static void SearchSameCity(){
         Scanner in = new Scanner(System.in);
         String citi = new String();
-        System.out.println("Введіть місто");
-        citi = in.nextLine();
-        for (int i=0;i<trips.size();i++){
-            if(citi.equals(trips.get(i).city)){
-                trips.get(i).OutputTrip();
+        try {
+            System.out.println("Введіть місто");
+            citi = in.nextLine();
+            int n=0;
+            for (int i=0;i<trips.size();i++){
+                if(citi.equals(trips.get(i).city)){
+                    trips.get(i).OutputTrip();
+                    n++;
+                }
             }
+            if(n==0){
+                System.out.println("Жоден гурт ще не був в цьому місті");
+            }
+
+
         }
+        catch (Exception ex){
+            System.out.println("Помилка " + ex.getMessage());
+        }
+
     }
 
     public static void laststmbol(){
@@ -155,22 +171,23 @@ class Trip extends Mus_band implements Serializable{
         System.out.println("Введіть назву гурту");
         String nname = new String(in.nextLine());
         String ssurname =new String();
+        int n=0;
         for (int i=0;i<trips.size();i++){
             if(nname.equals(trips.get(i).Name_band)){
-
                 System.out.println(trips.get(i).surname);
                 ssurname = trips.get(i).surname;
+                n++;
             }
         }
-        System.out.println("Керівник гурту" + nname + " - " + ssurname);
-        String [] s = ssurname.split("");
-        if(s[s.length] == " "){
-            System.out.println("Остання літера прізвища - " + s[s.length -2]);
+        if(n==0){
+            System.out.println("Такого гурту не знайдено");
+            return;
         }
         else{
+            System.out.println("Керівник гурту - " + nname + " - " + ssurname);
+            String [] s = ssurname.split("");
             System.out.println("Остання літера прізвища - " + s[s.length -1]);
         }
-
     }
 }
 
