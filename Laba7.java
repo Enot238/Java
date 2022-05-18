@@ -1,14 +1,34 @@
 package com.company;
 import java.io.*;
-import java.time.temporal.Temporal;
 import java.util.*;
 
 import static com.company.Trip.*;
 
-abstract class Mus_band implements Serializable{
+class Mus_band implements Serializable{
     protected String Name_band;
     protected String surname;
-    public Mus_band(){};
+
+    public void OutputTrip(){
+        System.out.println();
+
+
+    }
+    public  static void OutputTrip(List<Trip> array){
+        System.out.println("Кількість записів: " + array.size());
+        for (int i = 0; i < array.size(); i++) {
+            array.get(i).OutputTrip();
+        }
+    }
+    public static void FileRead() throws IOException, ClassNotFoundException {
+        try {
+            FileInputStream fis = new FileInputStream("data.txt");
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            trips = (List) ois.readObject();
+            ois.close();
+        } catch (FileNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 }
 
 class Trip extends Mus_band implements Serializable{
@@ -41,7 +61,7 @@ class Trip extends Mus_band implements Serializable{
         consert_count=_consert_count;
     }
 
-    public static com.company.Trip AddTrip(){
+    public static Trip AddTrip(){
         Scanner a = new Scanner(System.in);
         Scanner c = new Scanner(System.in);
         com.company.Trip b = new com.company.Trip();
@@ -71,6 +91,7 @@ class Trip extends Mus_band implements Serializable{
         return b;
     }
 
+    @Override
     public void OutputTrip(){
         System.out.println("\tНазву музичного гурту:  " + Name_band);
         for (String s : Arrays.asList("\tПрізвище керівника: " + surname, "\tМісто: " + city,
@@ -78,24 +99,6 @@ class Trip extends Mus_band implements Serializable{
             System.out.println(s);
         }
         System.out.println();
-    }
-
-    public  static void OutputTrip(List<Trip> array){
-        System.out.println("Кількість записів: " + array.size());
-        for (int i = 0; i < array.size(); i++) {
-            array.get(i).OutputTrip();
-        }
-    }
-
-    public static void FileRead() throws IOException, ClassNotFoundException {
-        try {
-            FileInputStream fis = new FileInputStream("data.txt");
-            ObjectInputStream ois = new ObjectInputStream(fis);
-            trips = (List) ois.readObject();
-            ois.close();
-        } catch (FileNotFoundException e) {
-            System.out.println(e.getMessage());
-        }
     }
 
     public static void SearchMaxConsert(){
@@ -217,7 +220,7 @@ public class Main {
                     Trip trip = new Trip(Trip.AddTrip());
                     break;
                 case "2":
-                    Trip.OutputTrip(trips);
+                    Mus_band.OutputTrip(trips);
                     break;
                 case "3":
                     Trip.SearchMaxConsert();
