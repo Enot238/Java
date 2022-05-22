@@ -6,6 +6,10 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 public class HelloController {
     @FXML private TextField input;
     @FXML private TextField Outout_v;
@@ -32,13 +36,17 @@ public class HelloController {
     }
     @FXML public void Calcul(){
         double v,s=0;
-        int in=0;
+        double in=0;
         try{
-            in = Integer.parseInt(input.getText());
+            in = Double.parseDouble(input.getText());
             v =  Math.pow(in,3);
             s = Math.pow(in,2) *6;
-            Outout_v.setText(Double.toString(v));
-            Outout_s.setText(Double.toString(s));
+            BigDecimal v1 = new BigDecimal(v);
+            v1=v1.setScale(3, RoundingMode.HALF_UP);
+            BigDecimal s1 = new BigDecimal(s);
+            s1=s1.setScale(3, RoundingMode.HALF_UP);
+            Outout_v.setText(String.valueOf(v1));
+            Outout_s.setText(String.valueOf(s1));
         }
         catch (Exception ex){
             Alert alert = new Alert(Alert.AlertType.WARNING);
