@@ -1,4 +1,5 @@
 package com.company;
+import java.util.Objects;
 import java.util.Scanner;
 public class Main {
     public static int Nepar(int arr[]){
@@ -65,10 +66,17 @@ public class Main {
             System.out.println();
             System.out.println("Завдання 1:");
             System.out.println("\tа) Мінімальнйи елемент масиву = " + SearchMinInArr(arr));
-
             System.out.println("\tб) Сума елементів між першим там другим від'ємними числами =  "+ zav2(arr));
             System.out.println("Завдання 2:");
             System.out.println("Кількість непарних чисел = " + Nepar(arr));
+            
+            int s = 0;
+            System.out.println("Перезапустити прогаму ?");
+            System.out.println("1 - Так");
+            System.out.println("2 - Ні");
+            s = in.nextInt();
+            if(s == 1){main(args);}
+            else if (s ==2){return;}
         }
         catch (Exception ex){
             System.out.println("Введено некоректні данні!");
